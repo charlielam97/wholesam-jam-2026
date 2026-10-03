@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://55kal78g7n1m"]
 
 [ext_resource type="Shape2D" uid="uid://cscb6l5qk3wam" path="res://shapes/horse.tres" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://ofulxqw6o3xt" path="res://originals/start.png" id="1_hb5m1"]
 [ext_resource type="SpriteFrames" uid="uid://dpl4q5hets7ks" path="res://sprites/horse.tres" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://c3mgboo6iioa1" path="res://scripts/character_body_2d.gd" id="2_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://b84uorou7dcjl" path="res://originals/background.png" id="2_x5p1p"]
 [ext_resource type="Shape2D" uid="uid://21qv038vnvh8" path="res://shapes/floor.tres" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://mg3g2qyc6k5d" path="res://originals/finish.png" id="3_qhcbd"]
 [ext_resource type="Script" uid="uid://3700ey6t1kjk" path="res://scripts/horse_skeleton.gd" id="5_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c4oxvitw860nl" path="res://sprites/horse/body.png" id="5_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bntq8h5llchn7" path="res://sprites/horse/head.png" id="6_iotsf"]
@@ -18,8 +21,6 @@
 [ext_resource type="PhysicsMaterial" uid="uid://qo2m2p4888pf" path="res://floor.tres" id="15_7sc4i"]
 [ext_resource type="FontFile" uid="uid://cq844u5y0ww4k" path="res://BoldPixels.ttf" id="16_e8heu"]
 [ext_resource type="Script" uid="uid://duetf7oj1wf8b" path="res://score_label.gd" id="17_rvswv"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fn0w8"]
 
 [sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_3mogu"]
 physical_bone_chain_length = 15
@@ -69,75 +70,52 @@ default_font_size = 50
 
 [node name="Main" type="Node2D" unique_id=491655617]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1574009734]
-
-[node name="Parallax2D" type="Parallax2D" parent="Start" unique_id=999678567]
-texture_repeat = 2
+[node name="Start" type="Node2D" parent="." unique_id=1215608283]
 
 [node name="Background" type="Sprite2D" parent="Start" unique_id=1089336820]
-position = Vector2(341.4635, 3.862442)
+position = Vector2(157.00003, 120.000015)
 scale = Vector2(1.1657988, 0.996136)
-texture = ExtResource("16_e8heu")
+texture = ExtResource("1_hb5m1")
 
 [node name="Background" type="Sprite2D" parent="Start/Background" unique_id=907977294]
+texture_filter = 1
 position = Vector2(255.01556, 0.5539179)
 scale = Vector2(1.2159069, 0.99321187)
-texture = ExtResource("16_e8heu")
+texture = ExtResource("2_x5p1p")
 
 [node name="Background" type="Sprite2D" parent="Start/Background/Background" unique_id=1269815667]
+texture_filter = 1
 position = Vector2(249.2647, 0.92950594)
 scale = Vector2(1.2159069, 0.99321187)
-texture = ExtResource("16_e8heu")
+texture = ExtResource("2_x5p1p")
 
 [node name="Background" type="Sprite2D" parent="Start/Background/Background/Background" unique_id=427783367]
+texture_filter = 1
 position = Vector2(249.2647, 0.92950594)
 scale = Vector2(1.2159069, 0.99321187)
-texture = ExtResource("16_e8heu")
+texture = ExtResource("2_x5p1p")
 
 [node name="Background" type="Sprite2D" parent="Start/Background/Background/Background/Background" unique_id=521399533]
+texture_filter = 1
 position = Vector2(249.2647, 0.92950594)
 scale = Vector2(1.2159069, 0.99321187)
-texture = ExtResource("16_e8heu")
+texture = ExtResource("2_x5p1p")
 
 [node name="Finish" type="Sprite2D" parent="Start" unique_id=402076749]
+texture_filter = 1
 position = Vector2(2464.3962, 8.092736)
 scale = Vector2(1.7784287, 0.96754247)
-texture = ExtResource("18_rvswv")
+texture = ExtResource("3_qhcbd")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=285128507]
 position = Vector2(-955, 897)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1936456901]
-position = Vector2(607, -807)
-shape = ExtResource("3_feb5d")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3" unique_id=748775881]
-position = Vector2(611, -804.9999)
-scale = Vector2(249.99998, 74.99999)
-texture = SubResource("PlaceholderTexture2D_fn0w8")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1503588612]
-position = Vector2(74, 587)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=206422495]
-position = Vector2(321, -255)
-shape = ExtResource("3_feb5d")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=101972408]
-position = Vector2(320, -254.00003)
-scale = Vector2(249.99998, 74.99999)
-texture = SubResource("PlaceholderTexture2D_fn0w8")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1302315406]
-position = Vector2(86, 203)
-scale = Vector2(2.81, 1)
-collision_mask = 3
+collision_mask = 7
+physics_material_override = ExtResource("15_7sc4i")
 script = ExtResource("14_rvswv")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=998932873]
-position = Vector2(0.9999962, 1.4999948)
-scale = Vector2(249.99998, 74.99999)
-texture = SubResource("PlaceholderTexture2D_fn0w8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1936456901]
+position = Vector2(2822, -674)
+shape = ExtResource("3_feb5d")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=798860639]
 position = Vector2(-337, -174)
@@ -197,6 +175,10 @@ modification_stack = SubResource("SkeletonModificationStack2D_fn0w8")
 [node name="Body" type="Bone2D" parent="HorseSkeleton/Skeleton2D" unique_id=832930140]
 position = Vector2(26, 0)
 rest = Transform2D(1, 0, 0, 1, 26, 0)
+
+[node name="Camera2D" type="Camera2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=1574009734]
+position = Vector2(-26, 0)
+offset = Vector2(0, -200)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=145500763]
 position = Vector2(79, 6)
