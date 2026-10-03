@@ -47,6 +47,7 @@ jump={
 
 2d_physics/layer_1="floor"
 2d_physics/layer_2="player"
+2d_physics/layer_3="head"
 
 [physics]
 

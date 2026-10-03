@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://1okvuaq3oae1" path="res://sprites/horse/leg_rr.png" id="10_80cx4"]
 [ext_resource type="Texture2D" uid="uid://b8hshnpgiigcn" path="res://sprites/horse/tail.png" id="11_e8heu"]
 [ext_resource type="Script" uid="uid://kdpy2h7iykoc" path="res://qwop.gd" id="14_215e1"]
+[ext_resource type="Script" uid="uid://b5vn2snuawj3v" path="res://gameover.gd" id="14_rvswv"]
 [ext_resource type="PhysicsMaterial" uid="uid://qo2m2p4888pf" path="res://floor.tres" id="15_7sc4i"]
 [ext_resource type="FontFile" uid="uid://cq844u5y0ww4k" path="res://BoldPixels.ttf" id="16_e8heu"]
 [ext_resource type="Script" uid="uid://duetf7oj1wf8b" path="res://score_label.gd" id="17_rvswv"]
@@ -131,6 +132,7 @@ texture = SubResource("PlaceholderTexture2D_fn0w8")
 position = Vector2(86, 203)
 scale = Vector2(2.81, 1)
 collision_mask = 3
+script = ExtResource("14_rvswv")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=998932873]
 position = Vector2(0.9999962, 1.4999948)
@@ -301,7 +303,7 @@ shape = SubResource("RectangleShape2D_fn0w8")
 
 [node name="PB_Neck" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1191265804]
 position = Vector2(139, 0)
-collision_layer = 2
+collision_layer = 6
 bone2d_nodepath = NodePath("../../Body/Neck")
 bone2d_index = 1
 auto_configure_joint = false
@@ -327,7 +329,7 @@ bias = 0.5
 position = Vector2(25, -53)
 rotation = 0.01144436
 scale = Vector2(0.9999999, 0.9999999)
-collision_layer = 2
+collision_layer = 6
 bone2d_nodepath = NodePath("../../../Body/Neck/Head")
 bone2d_index = 2
 auto_configure_joint = false
