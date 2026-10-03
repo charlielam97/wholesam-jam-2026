@@ -58,3 +58,4 @@ jump={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.20392157, 0.6666667, 1, 1)

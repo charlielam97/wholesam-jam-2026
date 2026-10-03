@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b84uorou7dcjl" path="res://originals/background.png" id="2_x5p1p"]
 [ext_resource type="Shape2D" uid="uid://21qv038vnvh8" path="res://shapes/floor.tres" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://mg3g2qyc6k5d" path="res://originals/finish.png" id="3_qhcbd"]
+[ext_resource type="Script" uid="uid://df8ue3fsuj60k" path="res://gamewin.gd" id="4_qhcbd"]
 [ext_resource type="Script" uid="uid://3700ey6t1kjk" path="res://scripts/horse_skeleton.gd" id="5_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c4oxvitw860nl" path="res://sprites/horse/body.png" id="5_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bntq8h5llchn7" path="res://sprites/horse/head.png" id="6_iotsf"]
@@ -21,6 +22,28 @@
 [ext_resource type="PhysicsMaterial" uid="uid://qo2m2p4888pf" path="res://floor.tres" id="15_7sc4i"]
 [ext_resource type="FontFile" uid="uid://cq844u5y0ww4k" path="res://BoldPixels.ttf" id="16_e8heu"]
 [ext_resource type="Script" uid="uid://duetf7oj1wf8b" path="res://score_label.gd" id="17_rvswv"]
+[ext_resource type="Script" uid="uid://c30w0dcb8yemi" path="res://timer_label.gd" id="22_vaj68"]
+[ext_resource type="Texture2D" uid="uid://cc4nlwy2b15wp" path="res://originals/TV.png" id="22_x5p1p"]
+[ext_resource type="AudioStream" uid="uid://brusmmie4fpad" path="res://Wholesome_Horse_Loop.wav" id="24_f1jbl"]
+[ext_resource type="Script" uid="uid://88qlw25qkdlu" path="res://restart.gd" id="25_i2p71"]
+[ext_resource type="AudioStream" uid="uid://b0gpvi822nqq0" path="res://horse_stomp.wav" id="27_xa8c5"]
+[ext_resource type="AudioStream" uid="uid://bnpo857b1itde" path="res://horse1.wav" id="28_5b14r"]
+[ext_resource type="Script" uid="uid://cxd3lsqrrjcnn" path="res://stomp_manager.gd" id="28_dhpj7"]
+[ext_resource type="Script" uid="uid://brtmc6rmn8vrm" path="res://horse_audio.gd" id="29_bnpwn"]
+[ext_resource type="AudioStream" uid="uid://dk8flost850am" path="res://horse2.wav" id="30_xfvwf"]
+[ext_resource type="AudioStream" uid="uid://c1e6fid1o7k4d" path="res://horse3.wav" id="31_dhpj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vojbm"]
+size = Vector2(54.140015, 108.96206)
+
+[sub_resource type="Gradient" id="Gradient_qhcbd"]
+offsets = PackedFloat32Array(0, 0.15494792, 1)
+colors = PackedColorArray(0.007843138, 1, 0.05882353, 1, 0.007843138, 1, 0.05882353, 1, 0.007843138, 1, 0.05882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fn0w8"]
+gradient = SubResource("Gradient_qhcbd")
+width = 11000
+height = 100
 
 [sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_3mogu"]
 physical_bone_chain_length = 15
@@ -63,6 +86,9 @@ size = Vector2(17, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sinol"]
 size = Vector2(21, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q87c"]
+size = Vector2(65, 86)
 
 [sub_resource type="Theme" id="Theme_fn0w8"]
 default_font = ExtResource("16_e8heu")
@@ -110,15 +136,34 @@ position = Vector2(2447.25, 126.75001)
 scale = Vector2(1.7784287, 0.96754247)
 texture = ExtResource("3_qhcbd")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=285128507]
+[node name="WinManager" type="Area2D" parent="Start/Finish" unique_id=1141831015 node_paths=PackedStringArray("win_label")]
+position = Vector2(-1297.2126, -7.6293945e-06)
+collision_mask = 6
+script = ExtResource("4_qhcbd")
+win_label = NodePath("../../../CanvasLayer/UserInterface/WinLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start/Finish/WinManager" unique_id=939546045]
+position = Vector2(1370.4515, -4.65096)
+scale = Vector2(1, 0.99999994)
+shape = SubResource("RectangleShape2D_vojbm")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=285128507 node_paths=PackedStringArray("win_manager_node", "win_label", "retry_button")]
 position = Vector2(-952, 880)
 collision_mask = 7
 physics_material_override = ExtResource("15_7sc4i")
 script = ExtResource("14_rvswv")
+win_manager_node = NodePath("../Start/Finish/WinManager")
+win_label = NodePath("../CanvasLayer/UserInterface/WinLabel")
+retry_button = NodePath("../CanvasLayer/UserInterface/RetryButton")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1936456901]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1936456901]
 position = Vector2(5883, -697)
 shape = ExtResource("3_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=2092318342]
+z_index = 99
+position = Vector2(5864, -664)
+texture = SubResource("GradientTexture2D_fn0w8")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=798860639]
 position = Vector2(-250, 471)
@@ -633,6 +678,24 @@ node_a = NodePath("../..")
 node_b = NodePath("..")
 bias = 0.1
 
+[node name="TailBone" type="RigidBody2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1204889048]
+collision_layer = 4
+mass = 0.1
+
+[node name="Tail" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/TailBone" unique_id=442849447]
+position = Vector2(-51.5, -19)
+shape = SubResource("RectangleShape2D_4q87c")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/TailBone" unique_id=1606527636]
+position = Vector2(-21, -24)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/TailBone" unique_id=1763893251]
+position = Vector2(-22, 10)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2115024037]
 
 [node name="UserInterface" type="Control" parent="CanvasLayer" unique_id=1710676579]
@@ -645,13 +708,86 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_fn0w8")
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/UserInterface" unique_id=1922540372 node_paths=PackedStringArray("player")]
+[node name="TimerLabel" type="Label" parent="CanvasLayer/UserInterface" unique_id=148044321 node_paths=PackedStringArray("win_manager_node", "win_label", "retry_button")]
+z_index = 1
 layout_mode = 0
-offset_left = 878.0
-offset_top = 19.0
-offset_right = 1116.0
-offset_bottom = 64.0
+offset_left = 940.0
+offset_top = 355.0
+offset_right = 1178.0
+offset_bottom = 400.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Score: 0"
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("22_vaj68")
+win_manager_node = NodePath("../../../Start/Finish/WinManager")
+win_label = NodePath("../WinLabel")
+retry_button = NodePath("../RetryButton")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/UserInterface" unique_id=1922540372 node_paths=PackedStringArray("player", "win_manager_node")]
+z_index = 1
+layout_mode = 0
+offset_left = 939.0
+offset_top = 103.0
+offset_right = 1177.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("17_rvswv")
 player = NodePath("../../../HorseSkeleton/Skeleton2D/PB_Body")
+win_manager_node = NodePath("../../../Start/Finish/WinManager")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserInterface" unique_id=1714442947]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_x5p1p")
+expand_mode = 1
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/UserInterface" unique_id=607664356]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 221.0
+offset_right = 835.0
+offset_bottom = 354.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8392157)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 150
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/UserInterface" unique_id=1399014420]
+visible = false
+layout_mode = 0
+offset_left = 423.0
+offset_top = 495.0
+offset_right = 584.0
+offset_bottom = 548.0
+text = "RETRY"
+script = ExtResource("25_i2p71")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=769302018]
+stream = ExtResource("24_f1jbl")
+volume_db = -10.0
+autoplay = true
+
+[node name="Stomp" type="AudioStreamPlayer" parent="." unique_id=1151083886 node_paths=PackedStringArray("player", "win_manager_node")]
+stream = ExtResource("27_xa8c5")
+volume_db = -4.0
+script = ExtResource("28_dhpj7")
+player = NodePath("../HorseSkeleton/Skeleton2D/Body")
+win_manager_node = NodePath("../Start/Finish/WinManager")
+
+[node name="Horse" type="AudioStreamPlayer" parent="." unique_id=735048827 node_paths=PackedStringArray("win_manager_node")]
+stream = ExtResource("28_5b14r")
+volume_db = -3.0
+script = ExtResource("29_bnpwn")
+sound_list = Array[AudioStream]([ExtResource("28_5b14r"), ExtResource("30_xfvwf"), ExtResource("31_dhpj7")])
+win_manager_node = NodePath("../Start/Finish/WinManager")
