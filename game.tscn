@@ -12,7 +12,7 @@
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1574009734]
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=285128507]
-position = Vector2(0, 1000)
+position = Vector2(-949, 950)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1936456901]
 position = Vector2(607, -807)
