@@ -2,25 +2,69 @@
 
 [ext_resource type="Shape2D" uid="uid://cscb6l5qk3wam" path="res://shapes/horse.tres" id="1_80nbo"]
 [ext_resource type="SpriteFrames" uid="uid://dpl4q5hets7ks" path="res://sprites/horse.tres" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://c3mgboo6iioa1" path="res://character_body_2d.gd" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://c3mgboo6iioa1" path="res://scripts/character_body_2d.gd" id="2_fc0e3"]
 [ext_resource type="Shape2D" uid="uid://21qv038vnvh8" path="res://shapes/floor.tres" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://3700ey6t1kjk" path="res://scripts/horse_skeleton.gd" id="5_iotsf"]
 [ext_resource type="Texture2D" uid="uid://c4oxvitw860nl" path="res://sprites/horse/body.png" id="5_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bntq8h5llchn7" path="res://sprites/horse/head.png" id="6_iotsf"]
+[ext_resource type="Texture2D" uid="uid://be7xw50puaw6x" path="res://sprites/horse/neck.png" id="7_215e1"]
 [ext_resource type="Texture2D" uid="uid://d05cuyefualu1" path="res://sprites/horse/leg_lf.png" id="7_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://bokfbsgxy1gnw" path="res://sprites/horse/leg_lr.png" id="8_215e1"]
 [ext_resource type="Texture2D" uid="uid://ci3sls734s5ow" path="res://sprites/horse/leg_rf.png" id="9_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://1okvuaq3oae1" path="res://sprites/horse/leg_rr.png" id="10_80cx4"]
 [ext_resource type="Texture2D" uid="uid://b8hshnpgiigcn" path="res://sprites/horse/tail.png" id="11_e8heu"]
+[ext_resource type="Script" uid="uid://cqhfrmmvm7vjg" path="res://movement.gd" id="14_215e1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fn0w8"]
+
+[sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_3mogu"]
+physical_bone_chain_length = 15
+fetch_bones = null
+joint_0_nodepath = NodePath("PB_Body")
+joint_1_nodepath = NodePath("PB_Body/PB_Neck")
+joint_2_nodepath = NodePath("PB_Body/PB_Neck/PB_LeftFrontThigh")
+joint_3_nodepath = NodePath("PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg")
+joint_4_nodepath = NodePath("PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg/PB_LeftFrontHoof")
+joint_5_nodepath = NodePath("PB_Body/PB_Neck/PB_RightFrontThigh")
+joint_6_nodepath = NodePath("PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg")
+joint_7_nodepath = NodePath("PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg/PB_RightFrontHoof")
+joint_8_nodepath = NodePath("PB_Body/PB_RightRearThigh")
+joint_9_nodepath = NodePath("PB_Body/PB_RightRearThigh/PB_RightRearLeg")
+joint_10_nodepath = NodePath("PB_Body/PB_RightRearThigh/PB_RightRearLeg/PB_RightRearHoof")
+joint_11_nodepath = NodePath("PB_Body/PB_LeftRearThigh")
+joint_12_nodepath = NodePath("PB_Body/PB_LeftRearThigh/PB_LeftRearLeg")
+joint_13_nodepath = NodePath("PB_Body/PB_LeftRearThigh/PB_LeftRearLeg/PB_LeftRearHoof")
+joint_14_nodepath = NodePath("PB_Body/PB_Neck/PB_Head")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_fn0w8"]
+enabled = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DPhysicalBones_3mogu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn0w8"]
+size = Vector2(102, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mogu"]
+size = Vector2(15.173996, 44.55436)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87vqd"]
+size = Vector2(44.5, 28.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60qtj"]
+size = Vector2(8.375, 8.53125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avsfp"]
+size = Vector2(17, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sinol"]
+size = Vector2(21, 14)
 
 [node name="Node2D" type="Node2D" unique_id=491655617]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1574009734]
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=285128507]
-visible = false
-position = Vector2(-949, 950)
+position = Vector2(-955, 897)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1936456901]
 position = Vector2(607, -807)
@@ -32,8 +76,7 @@ scale = Vector2(249.99998, 74.99999)
 texture = SubResource("PlaceholderTexture2D_fn0w8")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1503588612]
-visible = false
-position = Vector2(0, 500)
+position = Vector2(74, 587)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=206422495]
 position = Vector2(321, -255)
@@ -45,8 +88,9 @@ scale = Vector2(249.99998, 74.99999)
 texture = SubResource("PlaceholderTexture2D_fn0w8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1302315406]
-visible = false
-position = Vector2(0, 250)
+position = Vector2(86, 203)
+scale = Vector2(2.81, 1)
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=989572882]
 shape = ExtResource("3_feb5d")
@@ -57,7 +101,7 @@ scale = Vector2(249.99998, 74.99999)
 texture = SubResource("PlaceholderTexture2D_fn0w8")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=798860639]
-visible = false
+position = Vector2(-337, -174)
 script = ExtResource("2_fc0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1024373517]
@@ -70,6 +114,7 @@ sprite_frames = ExtResource("2_e2o6t")
 animation = &"horse"
 
 [node name="HorseSkeleton" type="Node2D" parent="." unique_id=1751303480]
+script = ExtResource("5_iotsf")
 
 [node name="Parts" type="Node2D" parent="HorseSkeleton" unique_id=961612059]
 texture_filter = 1
@@ -78,6 +123,10 @@ position = Vector2(130, -9)
 [node name="Body" type="Sprite2D" parent="HorseSkeleton/Parts" unique_id=761844404]
 position = Vector2(-25, 15)
 texture = ExtResource("5_mfdv2")
+
+[node name="Neck" type="Sprite2D" parent="HorseSkeleton/Parts" unique_id=51468644]
+position = Vector2(43, 9)
+texture = ExtResource("7_215e1")
 
 [node name="Head" type="Sprite2D" parent="HorseSkeleton/Parts" unique_id=152027592]
 position = Vector2(67, -45)
@@ -104,78 +153,421 @@ position = Vector2(-133, 50)
 texture = ExtResource("11_e8heu")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="HorseSkeleton" unique_id=1365310775]
+modification_stack = SubResource("SkeletonModificationStack2D_fn0w8")
 
-[node name="Base" type="Bone2D" parent="HorseSkeleton/Skeleton2D" unique_id=832930140]
+[node name="Body" type="Bone2D" parent="HorseSkeleton/Skeleton2D" unique_id=832930140]
 position = Vector2(26, 0)
+rest = Transform2D(1, 0, 0, 1, 26, 0)
 
-[node name="Body" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base" unique_id=392886537]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=145500763]
+position = Vector2(79, 6)
+remote_path = NodePath("../../../Parts/Body")
+
+[node name="Neck" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=392886537]
 position = Vector2(139, 0)
+rest = Transform2D(1, 0, 0, 1, 139, 0)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/Body" unique_id=367835050]
-position = Vector2(-60, 6)
-remote_path = NodePath("../../../../Parts/Body")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/Neck" unique_id=367835050]
+position = Vector2(8, 0)
+remote_path = NodePath("../../../../Parts/Neck")
 
-[node name="Head" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body" unique_id=258610393]
+[node name="Head" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck" unique_id=258610393]
 position = Vector2(25, -53)
+rest = Transform2D(1, 0, 0, 1, 25, -53)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/Body/Head" unique_id=1905178139]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/Head" unique_id=1905178139]
 position = Vector2(7, -1)
 remote_path = NodePath("../../../../../Parts/Head")
 
-[node name="LeftFrontThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body" unique_id=1855487580]
+[node name="LeftFrontThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck" unique_id=1855487580]
 position = Vector2(12, 18)
+rest = Transform2D(1, 0, 0, 1, 12, 18)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/Body/LeftFrontThigh" unique_id=81757448]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/LeftFrontThigh" unique_id=81757448]
 position = Vector2(4, 56)
 remote_path = NodePath("../../../../../Parts/LegLf")
 
-[node name="LeftFrontLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body/LeftFrontThigh" unique_id=1003950409]
+[node name="LeftFrontLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/LeftFrontThigh" unique_id=1003950409]
 position = Vector2(3, 110)
+rest = Transform2D(1, 0, 0, 1, 3, 110)
 
-[node name="LeftFrontHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body/LeftFrontThigh/LeftFrontLeg" unique_id=1862110823]
+[node name="LeftFrontHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/LeftFrontThigh/LeftFrontLeg" unique_id=1862110823]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
 
-[node name="RightFrontThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body" unique_id=761709752]
+[node name="RightFrontThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck" unique_id=761709752]
 position = Vector2(-10, 18)
+rest = Transform2D(1, 0, 0, 1, -10, 18)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/Body/RightFrontThigh" unique_id=497482692]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/RightFrontThigh" unique_id=497482692]
 position = Vector2(3, 56)
 remote_path = NodePath("../../../../../Parts/LegRf")
 
-[node name="RightFrontLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body/RightFrontThigh" unique_id=962266793]
+[node name="RightFrontLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/RightFrontThigh" unique_id=962266793]
 position = Vector2(2, 111)
+rest = Transform2D(1, 0, 0, 1, 2, 111)
 
-[node name="RightFrontHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/Body/RightFrontThigh/RightFrontLeg" unique_id=2029029462]
+[node name="RightFrontHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/Neck/RightFrontThigh/RightFrontLeg" unique_id=2029029462]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
 
-[node name="LeftRearThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base" unique_id=298215743]
+[node name="LeftRearThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=298215743]
 position = Vector2(12, 22)
+rest = Transform2D(1, 0, 0, 1, 12, 22)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/LeftRearThigh" unique_id=387329504]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/LeftRearThigh" unique_id=387329504]
 position = Vector2(8, 52)
 remote_path = NodePath("../../../../Parts/LegLr")
 
-[node name="LeftRearLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/LeftRearThigh" unique_id=1518361171]
+[node name="LeftRearLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/LeftRearThigh" unique_id=1518361171]
 position = Vector2(4, 106)
+rest = Transform2D(1, 0, 0, 1, 4, 106)
 
-[node name="LeftRearHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/LeftRearThigh/LeftRearLeg" unique_id=1513990815]
+[node name="LeftRearHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/LeftRearThigh/LeftRearLeg" unique_id=1513990815]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
 
-[node name="RightRearThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base" unique_id=1847705886]
+[node name="RightRearThigh" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=1847705886]
 position = Vector2(-13, 23)
+rest = Transform2D(1, 0, 0, 1, -13, 23)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/RightRearThigh" unique_id=1926661105]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/RightRearThigh" unique_id=1926661105]
 position = Vector2(8, 51)
 remote_path = NodePath("../../../../Parts/LegRr")
 
-[node name="RightRearLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/RightRearThigh" unique_id=302745000]
+[node name="RightRearLeg" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/RightRearThigh" unique_id=302745000]
 position = Vector2(3, 105)
+rest = Transform2D(1, 0, 0, 1, 3, 105)
 
-[node name="RightRearHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/RightRearThigh/RightRearLeg" unique_id=901269497]
+[node name="RightRearHoof" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/RightRearThigh/RightRearLeg" unique_id=901269497]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
 
-[node name="TailBone" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base" unique_id=880995063]
+[node name="TailBone" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body" unique_id=880995063]
 position = Vector2(-20, -5)
+rest = Transform2D(1, 0, 0, 1, -20, -5)
 
-[node name="Tail" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Base/TailBone" unique_id=977188220]
+[node name="Tail" type="Bone2D" parent="HorseSkeleton/Skeleton2D/Body/TailBone" unique_id=977188220]
 position = Vector2(-15, 88)
+rest = Transform2D(1, 0, 0, 1, -15, 88)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Base/TailBone" unique_id=548754399]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="HorseSkeleton/Skeleton2D/Body/TailBone" unique_id=548754399]
 position = Vector2(-9, 46)
 remote_path = NodePath("../../../../Parts/Tail")
+
+[node name="PB_Body" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D" unique_id=448020827]
+position = Vector2(26, 0)
+collision_layer = 2
+bone2d_nodepath = NodePath("../Body")
+bone2d_index = 0
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1783273432]
+position = Vector2(69, 3.5)
+shape = SubResource("RectangleShape2D_fn0w8")
+
+[node name="PB_Neck" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1191265804]
+position = Vector2(139, 0)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../Body/Neck")
+bone2d_index = 1
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck" unique_id=591126150]
+position = Vector2(11.000015, -26)
+rotation = 0.31387556
+shape = SubResource("RectangleShape2D_3mogu")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck" unique_id=943303901]
+position = Vector2(-9, -16)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.5
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck" unique_id=1948051984]
+position = Vector2(21, 7)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.5
+
+[node name="PB_Head" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck" unique_id=1373722354]
+position = Vector2(25, -53)
+rotation = 0.01144436
+scale = Vector2(0.9999999, 0.9999999)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../Body/Neck/Head")
+bone2d_index = 2
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_Head" unique_id=637172013]
+position = Vector2(24, -1)
+shape = SubResource("RectangleShape2D_87vqd")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_Head" unique_id=2046856663]
+position = Vector2(8.079592, 6.9079885)
+scale = Vector2(1.0000001, 1.0000001)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.5
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_Head" unique_id=694424645]
+position = Vector2(1, 0)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.5
+
+[node name="PB_LeftFrontThigh" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck" unique_id=1330947506]
+position = Vector2(12, 18)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../Body/Neck/LeftFrontThigh")
+bone2d_index = 3
+auto_configure_joint = false
+script = ExtResource("14_215e1")
+kick_force = 10000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh" unique_id=1623410555]
+position = Vector2(-3, -8)
+shape = SubResource("RectangleShape2D_60qtj")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh" unique_id=1449102789]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 5.0
+angular_limit_enabled = true
+angular_limit_lower = -0.17453292
+angular_limit_upper = 0.17453292
+
+[node name="PB_LeftFrontLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh" unique_id=400571371]
+position = Vector2(3, 110)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../../Body/Neck/LeftFrontThigh/LeftFrontLeg")
+bone2d_index = 4
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg" unique_id=1987041626]
+position = Vector2(-1.5, -52)
+shape = SubResource("RectangleShape2D_avsfp")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg" unique_id=856646665]
+position = Vector2(4, -101)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg" unique_id=749223985]
+position = Vector2(-8, -101)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+
+[node name="PB_LeftFrontHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg" unique_id=368450970]
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../../../Body/Neck/LeftFrontThigh/LeftFrontLeg/LeftFrontHoof")
+bone2d_index = 5
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg/PB_LeftFrontHoof" unique_id=545379885]
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_sinol")
+disabled = true
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg/PB_LeftFrontHoof" unique_id=1282517032]
+position = Vector2(9, 0)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg/PB_LeftFrontHoof" unique_id=1095278880]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+disable_collision = false
+
+[node name="PB_RightFrontThigh" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck" unique_id=1174431050]
+position = Vector2(-10, 18)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../Body/Neck/RightFrontThigh")
+bone2d_index = 6
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh" unique_id=740941924]
+position = Vector2(4, -8)
+shape = SubResource("RectangleShape2D_60qtj")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh" unique_id=1558682983]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 5.0
+angular_limit_enabled = true
+angular_limit_lower = -0.17453292
+angular_limit_upper = 0.17453292
+
+[node name="PB_RightFrontLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh" unique_id=586491768]
+position = Vector2(2, 111)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../../Body/Neck/RightFrontThigh/RightFrontLeg")
+bone2d_index = 7
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg" unique_id=673814019]
+position = Vector2(1, -53)
+shape = SubResource("RectangleShape2D_avsfp")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg" unique_id=904107206]
+position = Vector2(5, -102)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg" unique_id=929031601]
+position = Vector2(-6, -102)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+
+[node name="PB_RightFrontHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg" unique_id=1401795929]
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../../../Body/Neck/RightFrontThigh/RightFrontLeg/RightFrontHoof")
+bone2d_index = 8
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg/PB_RightFrontHoof" unique_id=1037136694]
+position = Vector2(1, -4)
+shape = SubResource("RectangleShape2D_sinol")
+disabled = true
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg/PB_RightFrontHoof" unique_id=856064838]
+position = Vector2(9, 0)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg/PB_RightFrontHoof" unique_id=2059695604]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+
+[node name="PB_LeftRearThigh" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1201693983]
+position = Vector2(12, 22)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../Body/LeftRearThigh")
+bone2d_index = 9
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh" unique_id=2083316025]
+position = Vector2(-3, -9)
+shape = SubResource("RectangleShape2D_60qtj")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh" unique_id=1539014920]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 5.0
+angular_limit_enabled = true
+angular_limit_lower = -0.17453292
+angular_limit_upper = 0.17453292
+
+[node name="PB_LeftRearLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh" unique_id=1483562881]
+position = Vector2(4, 106)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../Body/LeftRearThigh/LeftRearLeg")
+bone2d_index = 10
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg" unique_id=1653549919]
+position = Vector2(5, -52)
+shape = SubResource("RectangleShape2D_avsfp")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg" unique_id=649641327]
+position = Vector2(-7, -103)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg" unique_id=473659491]
+position = Vector2(4, -103)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+
+[node name="PB_LeftRearHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg" unique_id=1775787347]
+position = Vector2(4, -1)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../../Body/LeftRearThigh/LeftRearLeg/LeftRearHoof")
+bone2d_index = 11
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg/PB_LeftRearHoof" unique_id=372411593]
+shape = SubResource("RectangleShape2D_sinol")
+disabled = true
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg/PB_LeftRearHoof" unique_id=788827792]
+position = Vector2(8, 1)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg/PB_LeftRearHoof" unique_id=1951948823]
+position = Vector2(-4, 1)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+
+[node name="PB_RightRearThigh" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=55656280]
+position = Vector2(-13, 23)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../Body/RightRearThigh")
+bone2d_index = 12
+auto_configure_joint = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh" unique_id=66511255]
+position = Vector2(7, -10)
+shape = SubResource("RectangleShape2D_60qtj")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh" unique_id=329754366]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 5.0
+angular_limit_enabled = true
+angular_limit_lower = -0.17453292
+angular_limit_upper = 0.17453292
+
+[node name="PB_RightRearLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh" unique_id=701031029]
+position = Vector2(3, 105)
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../Body/RightRearThigh/RightRearLeg")
+bone2d_index = 13
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg" unique_id=775877149]
+position = Vector2(6, -52)
+shape = SubResource("RectangleShape2D_avsfp")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg" unique_id=1138566529]
+position = Vector2(6, -103)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg" unique_id=2103813943]
+position = Vector2(-4, -103)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
+
+[node name="PB_RightRearHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg" unique_id=580415512]
+collision_layer = 2
+bone2d_nodepath = NodePath("../../../../Body/RightRearThigh/RightRearLeg/RightRearHoof")
+bone2d_index = 14
+auto_configure_joint = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg/PB_RightRearHoof" unique_id=1354712622]
+position = Vector2(5, -1)
+shape = SubResource("RectangleShape2D_sinol")
+disabled = true
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg/PB_RightRearHoof" unique_id=497776272]
+position = Vector2(13, 0)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+bias = 0.1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg/PB_RightRearHoof" unique_id=2117218176]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+bias = 0.1
