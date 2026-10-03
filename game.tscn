@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://ci3sls734s5ow" path="res://sprites/horse/leg_rf.png" id="9_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://1okvuaq3oae1" path="res://sprites/horse/leg_rr.png" id="10_80cx4"]
 [ext_resource type="Texture2D" uid="uid://b8hshnpgiigcn" path="res://sprites/horse/tail.png" id="11_e8heu"]
-[ext_resource type="Script" uid="uid://cqhfrmmvm7vjg" path="res://movement.gd" id="14_215e1"]
+[ext_resource type="Script" uid="uid://kdpy2h7iykoc" path="res://qwop.gd" id="14_215e1"]
+[ext_resource type="PhysicsMaterial" uid="uid://qo2m2p4888pf" path="res://floor.tres" id="15_7sc4i"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fn0w8"]
 
@@ -42,7 +43,7 @@ modification_count = 1
 modifications/0 = SubResource("SkeletonModification2DPhysicalBones_3mogu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fn0w8"]
-size = Vector2(102, 35)
+size = Vector2(162, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mogu"]
 size = Vector2(15.173996, 44.55436)
@@ -253,13 +254,13 @@ remote_path = NodePath("../../../../Parts/Tail")
 
 [node name="PB_Body" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D" unique_id=448020827]
 position = Vector2(26, 0)
-collision_layer = 2
+collision_mask = 3
 bone2d_nodepath = NodePath("../Body")
 bone2d_index = 0
 auto_configure_joint = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1783273432]
-position = Vector2(69, 3.5)
+position = Vector2(70, -7)
 shape = SubResource("RectangleShape2D_fn0w8")
 
 [node name="PB_Neck" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body" unique_id=1191265804]
@@ -319,7 +320,12 @@ bone2d_nodepath = NodePath("../../../Body/Neck/LeftFrontThigh")
 bone2d_index = 3
 auto_configure_joint = false
 script = ExtResource("14_215e1")
-kick_force = 10000.0
+input_key = 79
+muscle_power = 4000000.0
+spring_strength = 120000.0
+muscle_damping = 180.0
+rest_angle = -10.0
+active_kick_angle = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh" unique_id=1623410555]
 position = Vector2(-3, -8)
@@ -336,6 +342,8 @@ angular_limit_upper = 0.17453292
 [node name="PB_LeftFrontLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh" unique_id=400571371]
 position = Vector2(3, 110)
 collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("15_7sc4i")
 bone2d_nodepath = NodePath("../../../../Body/Neck/LeftFrontThigh/LeftFrontLeg")
 bone2d_index = 4
 auto_configure_joint = false
@@ -358,6 +366,7 @@ bias = 0.1
 
 [node name="PB_LeftFrontHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_LeftFrontThigh/PB_LeftFrontLeg" unique_id=368450970]
 collision_layer = 2
+mass = 0.5
 bone2d_nodepath = NodePath("../../../../../Body/Neck/LeftFrontThigh/LeftFrontLeg/LeftFrontHoof")
 bone2d_index = 5
 auto_configure_joint = false
@@ -385,6 +394,13 @@ collision_layer = 2
 bone2d_nodepath = NodePath("../../../Body/Neck/RightFrontThigh")
 bone2d_index = 6
 auto_configure_joint = false
+script = ExtResource("14_215e1")
+input_key = 80
+muscle_power = 4000000.0
+spring_strength = 120000.0
+muscle_damping = 180.0
+rest_angle = -10.0
+active_kick_angle = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh" unique_id=740941924]
 position = Vector2(4, -8)
@@ -401,6 +417,8 @@ angular_limit_upper = 0.17453292
 [node name="PB_RightFrontLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh" unique_id=586491768]
 position = Vector2(2, 111)
 collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("15_7sc4i")
 bone2d_nodepath = NodePath("../../../../Body/Neck/RightFrontThigh/RightFrontLeg")
 bone2d_index = 7
 auto_configure_joint = false
@@ -423,6 +441,7 @@ bias = 0.1
 
 [node name="PB_RightFrontHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_Neck/PB_RightFrontThigh/PB_RightFrontLeg" unique_id=1401795929]
 collision_layer = 2
+mass = 0.5
 bone2d_nodepath = NodePath("../../../../../Body/Neck/RightFrontThigh/RightFrontLeg/RightFrontHoof")
 bone2d_index = 8
 auto_configure_joint = false
@@ -449,6 +468,12 @@ collision_layer = 2
 bone2d_nodepath = NodePath("../../Body/LeftRearThigh")
 bone2d_index = 9
 auto_configure_joint = false
+script = ExtResource("14_215e1")
+muscle_power = 4000000.0
+spring_strength = 120000.0
+muscle_damping = 180.0
+rest_angle = 10.0
+active_kick_angle = -45.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh" unique_id=2083316025]
 position = Vector2(-3, -9)
@@ -465,6 +490,8 @@ angular_limit_upper = 0.17453292
 [node name="PB_LeftRearLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh" unique_id=1483562881]
 position = Vector2(4, 106)
 collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("15_7sc4i")
 bone2d_nodepath = NodePath("../../../Body/LeftRearThigh/LeftRearLeg")
 bone2d_index = 10
 auto_configure_joint = false
@@ -488,6 +515,7 @@ bias = 0.1
 [node name="PB_LeftRearHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_LeftRearThigh/PB_LeftRearLeg" unique_id=1775787347]
 position = Vector2(4, -1)
 collision_layer = 2
+mass = 0.5
 bone2d_nodepath = NodePath("../../../../Body/LeftRearThigh/LeftRearLeg/LeftRearHoof")
 bone2d_index = 11
 auto_configure_joint = false
@@ -514,6 +542,13 @@ collision_layer = 2
 bone2d_nodepath = NodePath("../../Body/RightRearThigh")
 bone2d_index = 12
 auto_configure_joint = false
+script = ExtResource("14_215e1")
+input_key = 87
+muscle_power = 4000000.0
+spring_strength = 120000.0
+muscle_damping = 180.0
+rest_angle = 10.0
+active_kick_angle = -45.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh" unique_id=66511255]
 position = Vector2(7, -10)
@@ -530,6 +565,8 @@ angular_limit_upper = 0.17453292
 [node name="PB_RightRearLeg" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh" unique_id=701031029]
 position = Vector2(3, 105)
 collision_layer = 2
+mass = 0.5
+physics_material_override = ExtResource("15_7sc4i")
 bone2d_nodepath = NodePath("../../../Body/RightRearThigh/RightRearLeg")
 bone2d_index = 13
 auto_configure_joint = false
@@ -552,6 +589,7 @@ bias = 0.1
 
 [node name="PB_RightRearHoof" type="PhysicalBone2D" parent="HorseSkeleton/Skeleton2D/PB_Body/PB_RightRearThigh/PB_RightRearLeg" unique_id=580415512]
 collision_layer = 2
+mass = 0.5
 bone2d_nodepath = NodePath("../../../../Body/RightRearThigh/RightRearLeg/RightRearHoof")
 bone2d_index = 14
 auto_configure_joint = false
