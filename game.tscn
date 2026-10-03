@@ -11,6 +11,30 @@
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1574009734]
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=285128507]
+position = Vector2(0, 1000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1936456901]
+position = Vector2(607, -807)
+shape = ExtResource("3_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3" unique_id=748775881]
+position = Vector2(621, -810.0001)
+scale = Vector2(249.99998, 74.99999)
+texture = SubResource("PlaceholderTexture2D_fn0w8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1503588612]
+position = Vector2(0, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=206422495]
+position = Vector2(321, -255)
+shape = ExtResource("3_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=101972408]
+position = Vector2(320, -254.00003)
+scale = Vector2(249.99998, 74.99999)
+texture = SubResource("PlaceholderTexture2D_fn0w8")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1302315406]
 position = Vector2(0, 250)
 
