@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://b8hshnpgiigcn" path="res://sprites/horse/tail.png" id="11_e8heu"]
 [ext_resource type="Script" uid="uid://kdpy2h7iykoc" path="res://qwop.gd" id="14_215e1"]
 [ext_resource type="PhysicsMaterial" uid="uid://qo2m2p4888pf" path="res://floor.tres" id="15_7sc4i"]
+[ext_resource type="FontFile" uid="uid://cq844u5y0ww4k" path="res://BoldPixels.ttf" id="16_e8heu"]
+[ext_resource type="Script" uid="uid://duetf7oj1wf8b" path="res://score_label.gd" id="17_rvswv"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fn0w8"]
 
@@ -60,7 +62,11 @@ size = Vector2(17, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sinol"]
 size = Vector2(21, 14)
 
-[node name="Node2D" type="Node2D" unique_id=491655617]
+[sub_resource type="Theme" id="Theme_fn0w8"]
+default_font = ExtResource("16_e8heu")
+default_font_size = 50
+
+[node name="Main" type="Node2D" unique_id=491655617]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1574009734]
 
@@ -609,3 +615,21 @@ bias = 0.1
 node_a = NodePath("../..")
 node_b = NodePath("..")
 bias = 0.1
+
+[node name="UserInterface" type="Control" parent="." unique_id=1710676579]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_fn0w8")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface" unique_id=1922540372 node_paths=PackedStringArray("player")]
+layout_mode = 0
+offset_left = 274.0
+offset_top = -311.0
+offset_right = 512.0
+offset_bottom = -266.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Score: 0"
+script = ExtResource("17_rvswv")
+player = NodePath("../../HorseSkeleton/Skeleton2D/PB_Body")
