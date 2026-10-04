@@ -6,7 +6,6 @@ extends AudioStreamPlayer
 @export var speed_scale: float = 0.1
 @export var stop_delay: float = 0.2
 @export var player: Node2D = null
-
 @export var win_manager_node: Node
 
 var last_x: float = 0.0
@@ -14,8 +13,7 @@ var delay_timer: float = 0.0
 
 func _process(delta: float) -> void:
 	if win_manager_node and ("is_won" in win_manager_node and win_manager_node.is_won):
-		if playing:
-			stop()
+		volume_db = -80.0
 		
 	if not player:
 		return
@@ -25,17 +23,16 @@ func _process(delta: float) -> void:
 	
 	if speed > move_threshold:
 		delay_timer = stop_delay
-		if not playing:
-			play()
-			
+		
+		volume_db = 0.0
+		
 		var target_pitch: float = lerp(min_pitch, max_pitch, speed * speed_scale)
 		pitch_scale = clamp(target_pitch, min_pitch, max_pitch)
 	else:
 		if delay_timer > 0:
 			delay_timer -= delta
+			volume_db = 0.0
 			var target_pitch: float = lerp(min_pitch, max_pitch, speed * speed_scale)
 			pitch_scale = clamp(target_pitch, min_pitch, max_pitch)
-		elif playing:
-			pitch_scale = move_toward(pitch_scale, 0.0, delta * 3.0)
-			if pitch_scale <= 0.01:
-				stop()
+		else:
+			volume_db = -80.0

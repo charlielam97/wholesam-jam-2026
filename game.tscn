@@ -24,14 +24,15 @@
 [ext_resource type="Script" uid="uid://duetf7oj1wf8b" path="res://score_label.gd" id="17_rvswv"]
 [ext_resource type="Script" uid="uid://c30w0dcb8yemi" path="res://timer_label.gd" id="22_vaj68"]
 [ext_resource type="Texture2D" uid="uid://cc4nlwy2b15wp" path="res://originals/TV.png" id="22_x5p1p"]
-[ext_resource type="AudioStream" uid="uid://brusmmie4fpad" path="res://Wholesome_Horse_Loop.wav" id="24_f1jbl"]
 [ext_resource type="Script" uid="uid://88qlw25qkdlu" path="res://restart.gd" id="25_i2p71"]
-[ext_resource type="AudioStream" uid="uid://b0gpvi822nqq0" path="res://horse_stomp.wav" id="27_xa8c5"]
-[ext_resource type="AudioStream" uid="uid://bnpo857b1itde" path="res://horse1.wav" id="28_5b14r"]
+[ext_resource type="Script" uid="uid://ddwuk1vl37hr5" path="res://instructions_button.gd" id="26_7knny"]
+[ext_resource type="AudioStream" uid="uid://dqaqlq2v7k5b7" path="res://horse_stomp.mp3" id="26_i2p71"]
+[ext_resource type="AudioStream" uid="uid://dpi8lo0lm541n" path="res://Wholesome_Horse_Loop.mp3" id="27_xa8c5"]
 [ext_resource type="Script" uid="uid://cxd3lsqrrjcnn" path="res://stomp_manager.gd" id="28_dhpj7"]
 [ext_resource type="Script" uid="uid://brtmc6rmn8vrm" path="res://horse_audio.gd" id="29_bnpwn"]
-[ext_resource type="AudioStream" uid="uid://dk8flost850am" path="res://horse2.wav" id="30_xfvwf"]
-[ext_resource type="AudioStream" uid="uid://c1e6fid1o7k4d" path="res://horse3.wav" id="31_dhpj7"]
+[ext_resource type="AudioStream" uid="uid://3lh720d5cnll" path="res://horse1.mp3" id="29_xfvwf"]
+[ext_resource type="AudioStream" uid="uid://377p53faenvc" path="res://horse2.mp3" id="30_dhpj7"]
+[ext_resource type="AudioStream" uid="uid://bkwhk04lij0pj" path="res://horse3.mp3" id="31_7knny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vojbm"]
 size = Vector2(54.140015, 108.96206)
@@ -773,21 +774,44 @@ offset_bottom = 548.0
 text = "RETRY"
 script = ExtResource("25_i2p71")
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=769302018]
-stream = ExtResource("24_f1jbl")
-volume_db = -10.0
-autoplay = true
+[node name="Instructions" type="Label" parent="CanvasLayer/UserInterface" unique_id=105583595]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 282.0
+offset_right = 824.0
+offset_bottom = 370.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.87058824)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 100
+text = "Q,W,O,P to move!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("26_7knny")
 
-[node name="Stomp" type="AudioStreamPlayer" parent="." unique_id=1151083886 node_paths=PackedStringArray("player", "win_manager_node")]
-stream = ExtResource("27_xa8c5")
-volume_db = -4.0
+[node name="Stomp" type="AudioStreamPlayer" parent="." unique_id=1494686391 node_paths=PackedStringArray("player", "win_manager_node")]
+stream = ExtResource("26_i2p71")
+autoplay = true
 script = ExtResource("28_dhpj7")
 player = NodePath("../HorseSkeleton/Skeleton2D/Body")
 win_manager_node = NodePath("../Start/Finish/WinManager")
 
-[node name="Horse" type="AudioStreamPlayer" parent="." unique_id=735048827 node_paths=PackedStringArray("win_manager_node")]
-stream = ExtResource("28_5b14r")
-volume_db = -3.0
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2111655897]
+stream = ExtResource("27_xa8c5")
+autoplay = true
+
+[node name="AudioManager" type="Node2D" parent="." unique_id=1914479938 node_paths=PackedStringArray("win_manager_node")]
 script = ExtResource("29_bnpwn")
-sound_list = Array[AudioStream]([ExtResource("28_5b14r"), ExtResource("30_xfvwf"), ExtResource("31_dhpj7")])
 win_manager_node = NodePath("../Start/Finish/WinManager")
+
+[node name="Horse1" type="AudioStreamPlayer" parent="AudioManager" unique_id=435720675]
+stream = ExtResource("29_xfvwf")
+autoplay = true
+
+[node name="Horse2" type="AudioStreamPlayer" parent="AudioManager" unique_id=1173411632]
+stream = ExtResource("30_dhpj7")
+autoplay = true
+
+[node name="Horse3" type="AudioStreamPlayer" parent="AudioManager" unique_id=389981939]
+stream = ExtResource("31_7knny")
+autoplay = true
